@@ -30,6 +30,11 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.min.js"></script>
+    <script>
+        const supabase = Supabase.createClient('https://alhtskoaiekieensfuzl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsaHRza29haWVraWVlbnNmdXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ1MjkyNjksImV4cCI6MjAzMDEwNTI2OX0.ldrL1h7G11U9Klngyo3oVvKEiVpQHUHjP-Z9YWyyB4g');
+        </script>
 </head>
 
 <body>
@@ -412,10 +417,10 @@
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" name="name" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email"  name="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select border-0" style="height: 55px;">
@@ -433,7 +438,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control border-0" placeholder="Special Request"></textarea>
+                                    <textarea class="form-control border-0" name="message" placeholder="Special Request"></textarea>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-secondary w-100 py-3" type="submit">Book Now</button>
@@ -652,7 +657,27 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script>
+        const form = document.querySelector('form');
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value
+    };
+    const { data: response, error } = await supabase
+        .from('contact_form')
+        .insert([data]);
 
+    if (error) {
+        console.error('Error:', error);
+    } else {
+        alert('form submitted!');
+        console.log('Data added:', response);
+    }
+});
+    </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
