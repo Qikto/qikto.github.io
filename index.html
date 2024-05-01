@@ -657,9 +657,10 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>    
     <script>
+  const { createClient } = supabase
+  //const _supabase = createClient('https://xyzcompany.supabase.co', 'public-anon-key')
 
-
-        const supabase = Supabase.createClient('https://alhtskoaiekieensfuzl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsaHRza29haWVraWVlbnNmdXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ1MjkyNjksImV4cCI6MjAzMDEwNTI2OX0.ldrL1h7G11U9Klngyo3oVvKEiVpQHUHjP-Z9YWyyB4g');
+        const _supabase =  createClient('https://alhtskoaiekieensfuzl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsaHRza29haWVraWVlbnNmdXpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ1MjkyNjksImV4cCI6MjAzMDEwNTI2OX0.ldrL1h7G11U9Klngyo3oVvKEiVpQHUHjP-Z9YWyyB4g');
 
         const form = document.querySelector('form');
 form.addEventListener('submit', async (event) => {
@@ -669,7 +670,7 @@ form.addEventListener('submit', async (event) => {
         email: form.email.value,
         message: form.message.value
     };
-    const { data: response, error } = await supabase
+    const { data: response, error } = await _supabase
         .from('contact_form')
         .insert([data]);
 
