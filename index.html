@@ -31,7 +31,7 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.min.js"></script>
+
 
 </head>
 
@@ -655,6 +655,7 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>    
     <script>
 
 
@@ -678,6 +679,7 @@ form.addEventListener('submit', async (event) => {
         alert('form submitted!');
         console.log('Data added:', response);
     }
+    return false;
 });
     </script>
     <!-- Template Javascript -->
